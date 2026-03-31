@@ -1,0 +1,4 @@
+# file: /Users/vijayaraghavanvashudevan/Documents/aws ug mdu/MindGuard AI/src/utils/bedrock.py
+# hypothesis_version: 6.141.1
+
+[0.0, 100, 256, '+00:00', 'AWS_DEFAULT_REGION', 'NEGATIVE', 'Z', 'anthropic_version', 'application/json', 'bedrock', 'bedrock-2023-05-31', 'bedrock-runtime', 'body', 'break_reminder', 'breathing_exercise', 'burnout_score', 'category', 'content', 'coping_suggestion', 'created_at', 'delivered_at', 'fallback', 'gaps_over_5_days', 'max_tokens', 'messages', 'mindfulness_prompt', 'physical_activity', 'role', 'sentiment_label', 'source', 'text', 'timestamp', 'us-east-1', 'user']

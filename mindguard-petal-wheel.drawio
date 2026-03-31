@@ -1,0 +1,223 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" version="29.6.6">
+  <diagram name="MindGuard AI Tech Stack" id="mindguard-petal-wheel">
+    <mxGraphModel dx="1952" dy="2860" grid="0" gridSize="10" guides="0" tooltips="1" connect="0" arrows="0" fold="0" page="1" pageScale="1" pageWidth="1654" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bg" parent="1" style="rounded=0;fillColor=#FFFFFF;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="1654" width="1654" x="1526" y="-137" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=26;fontStyle=1;fontColor=#222222;" value="MindGuard AI Technologies" vertex="1">
+          <mxGeometry height="46" width="1000" x="327" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p0-petal" parent="1" style="ellipse;fillColor=#FFE566;strokeColor=#E69900;gradientColor=#FFAA00;gradientDirection=south;opacity=95;rotation=0.0;" value="" vertex="1">
+          <mxGeometry height="320" width="108" x="588" y="707" as="geometry" />
+        </mxCell>
+        <mxCell id="p0-icon" parent="1" style="ellipse;fillColor=#FFE566;strokeColor=#E69900;strokeWidth=2.5;fontSize=24;align=center;verticalAlign=middle;fontColor=#333333;" value="⚛" vertex="1">
+          <mxGeometry height="72" width="72" x="436" y="831" as="geometry" />
+        </mxCell>
+        <mxCell id="p0-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;fontColor=#E69900;" value="Frontend" vertex="1">
+          <mxGeometry height="20" width="220" x="249" y="853" as="geometry" />
+        </mxCell>
+        <mxCell id="p0-d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="React (TypeScript)," vertex="1">
+          <mxGeometry height="16" width="220" x="249" y="877" as="geometry" />
+        </mxCell>
+        <mxCell id="p0-d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="responsive web/mobile UI." vertex="1">
+          <mxGeometry height="16" width="220" x="249" y="893" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-petal" parent="1" style="ellipse;fillColor=#FFCC88;strokeColor=#CC6600;gradientColor=#FF8800;gradientDirection=south;opacity=95;rotation=27.7;" value="" vertex="1">
+          <mxGeometry height="320" width="108" x="609.2" y="621" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-icon" parent="1" style="ellipse;fillColor=#FFCC88;strokeColor=#CC6600;strokeWidth=2.5;fontSize=24;align=center;verticalAlign=middle;fontColor=#333333;" value="λ" vertex="1">
+          <mxGeometry height="72" width="72" x="476.7" y="666" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;fontColor=#CC6600;" value="Backend" vertex="1">
+          <mxGeometry height="20" width="220" x="302.6" y="635.5" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="AWS Lambda (Python 3.x)," vertex="1">
+          <mxGeometry height="16" width="220" x="302.6" y="659.5" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="serverless pipeline." vertex="1">
+          <mxGeometry height="16" width="220" x="302.6" y="675.5" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-petal" parent="1" style="ellipse;fillColor=#FF9999;strokeColor=#CC0044;gradientColor=#FF4466;gradientDirection=south;opacity=95;rotation=55.4;" value="" vertex="1">
+          <mxGeometry height="320" width="108" x="667.9" y="554.7" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-icon" parent="1" style="ellipse;fillColor=#FF9999;strokeColor=#CC0044;strokeWidth=2.5;fontSize=24;align=center;verticalAlign=middle;fontColor=#333333;" value="🗄" vertex="1">
+          <mxGeometry height="72" width="72" x="589.3" y="538.8" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;fontColor=#CC0044;" value="Database" vertex="1">
+          <mxGeometry height="20" width="220" x="451.1" y="467.8" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="Amazon DynamoDB," vertex="1">
+          <mxGeometry height="16" width="220" x="451.1" y="491.8" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="single-table design." vertex="1">
+          <mxGeometry height="16" width="220" x="451.1" y="507.8" as="geometry" />
+        </mxCell>
+        <mxCell id="p3-petal" parent="1" style="ellipse;fillColor=#FF88CC;strokeColor=#AA2288;gradientColor=#CC44AA;gradientDirection=south;opacity=95;rotation=83.1;" value="" vertex="1">
+          <mxGeometry height="320" width="108" x="750.7" y="523.3" as="geometry" />
+        </mxCell>
+        <mxCell id="p3-icon" parent="1" style="ellipse;fillColor=#FF88CC;strokeColor=#AA2288;strokeWidth=2.5;fontSize=24;align=center;verticalAlign=middle;fontColor=#333333;" value="🧠" vertex="1">
+          <mxGeometry height="72" width="72" x="748.2" y="478.6" as="geometry" />
+        </mxCell>
+        <mxCell id="p3-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;fontColor=#AA2288;" value="AI" vertex="1">
+          <mxGeometry height="20" width="220" x="660.6" y="388.4" as="geometry" />
+        </mxCell>
+        <mxCell id="p3-d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="Amazon Bedrock (Claude)," vertex="1">
+          <mxGeometry height="16" width="220" x="660.6" y="412.4" as="geometry" />
+        </mxCell>
+        <mxCell id="p3-d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="burnout prediction." vertex="1">
+          <mxGeometry height="16" width="220" x="660.6" y="428.4" as="geometry" />
+        </mxCell>
+        <mxCell id="p4-petal" parent="1" style="ellipse;fillColor=#CC88FF;strokeColor=#6622AA;gradientColor=#8844CC;gradientDirection=south;opacity=95;rotation=110.8;" value="" vertex="1">
+          <mxGeometry height="320" width="108" x="838.6" y="534" as="geometry" />
+        </mxCell>
+        <mxCell id="p4-icon" parent="1" style="ellipse;fillColor=#CC88FF;strokeColor=#6622AA;strokeWidth=2.5;fontSize=24;align=center;verticalAlign=middle;fontColor=#333333;" value="🔒" vertex="1">
+          <mxGeometry height="72" width="72" x="916.9" y="499.1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;fontColor=#6622AA;" value="Auth" vertex="1">
+          <mxGeometry height="20" width="220" x="883" y="415.4" as="geometry" />
+        </mxCell>
+        <mxCell id="p4-d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="Amazon Cognito," vertex="1">
+          <mxGeometry height="16" width="220" x="883" y="439.4" as="geometry" />
+        </mxCell>
+        <mxCell id="p4-d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="JWT + User Pools." vertex="1">
+          <mxGeometry height="16" width="220" x="883" y="455.4" as="geometry" />
+        </mxCell>
+        <mxCell id="p5-petal" parent="1" style="ellipse;fillColor=#9999FF;strokeColor=#2233CC;gradientColor=#4455EE;gradientDirection=south;opacity=95;rotation=138.5;" value="" vertex="1">
+          <mxGeometry height="320" width="108" x="911.5" y="584.3" as="geometry" />
+        </mxCell>
+        <mxCell id="p5-icon" parent="1" style="ellipse;fillColor=#9999FF;strokeColor=#2233CC;strokeWidth=2.5;fontSize=24;align=center;verticalAlign=middle;fontColor=#333333;" value="🔫" vertex="1">
+          <mxGeometry height="72" width="72" x="1056.7" y="595.6" as="geometry" />
+        </mxCell>
+        <mxCell id="p5-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;fontColor=#2233CC;" value="API" vertex="1">
+          <mxGeometry height="20" width="220" x="1067.3" y="542.7" as="geometry" />
+        </mxCell>
+        <mxCell id="p5-d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="Amazon API Gateway," vertex="1">
+          <mxGeometry height="16" width="220" x="1067.3" y="566.7" as="geometry" />
+        </mxCell>
+        <mxCell id="p5-d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="REST + secure routing." vertex="1">
+          <mxGeometry height="16" width="220" x="1067.3" y="582.7" as="geometry" />
+        </mxCell>
+        <mxCell id="p6-petal" parent="1" style="ellipse;fillColor=#66CCFF;strokeColor=#0077BB;gradientColor=#2299DD;gradientDirection=south;opacity=95;rotation=166.2;" value="" vertex="1">
+          <mxGeometry height="320" width="108" x="952.6" y="662.7" as="geometry" />
+        </mxCell>
+        <mxCell id="p6-icon" parent="1" style="ellipse;fillColor=#66CCFF;strokeColor=#0077BB;strokeWidth=2.5;fontSize=24;align=center;verticalAlign=middle;fontColor=#333333;" value="🎙" vertex="1">
+          <mxGeometry height="72" width="72" x="1135.7" y="746" as="geometry" />
+        </mxCell>
+        <mxCell id="p6-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;fontColor=#0077BB;" value="Voice" vertex="1">
+          <mxGeometry height="20" width="220" x="1171.4" y="741" as="geometry" />
+        </mxCell>
+        <mxCell id="p6-d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="Amazon Transcribe," vertex="1">
+          <mxGeometry height="16" width="220" x="1171.4" y="765" as="geometry" />
+        </mxCell>
+        <mxCell id="p6-d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="speech-to-text journaling." vertex="1">
+          <mxGeometry height="16" width="220" x="1171.4" y="781" as="geometry" />
+        </mxCell>
+        <mxCell id="p7-petal" parent="1" style="ellipse;fillColor=#44DDCC;strokeColor=#008888;gradientColor=#00AAAA;gradientDirection=south;opacity=95;rotation=193.8;" value="" vertex="1">
+          <mxGeometry height="320" width="108" x="952.6" y="751.3" as="geometry" />
+        </mxCell>
+        <mxCell id="p7-icon" parent="1" style="ellipse;fillColor=#44DDCC;strokeColor=#008888;strokeWidth=2.5;fontSize=24;align=center;verticalAlign=middle;fontColor=#333333;" value="☁" vertex="1">
+          <mxGeometry height="72" width="72" x="1135.7" y="916" as="geometry" />
+        </mxCell>
+        <mxCell id="p7-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;fontColor=#008888;" value="Hosting" vertex="1">
+          <mxGeometry height="20" width="220" x="1171.4" y="965" as="geometry" />
+        </mxCell>
+        <mxCell id="p7-d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="AWS Amplify + CI/CD," vertex="1">
+          <mxGeometry height="16" width="220" x="1171.4" y="989" as="geometry" />
+        </mxCell>
+        <mxCell id="p7-d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="GitHub Actions pipeline." vertex="1">
+          <mxGeometry height="16" width="220" x="1171.4" y="1005" as="geometry" />
+        </mxCell>
+        <mxCell id="p8-petal" parent="1" style="ellipse;fillColor=#66EE88;strokeColor=#009922;gradientColor=#22BB44;gradientDirection=south;opacity=95;rotation=221.5;" value="" vertex="1">
+          <mxGeometry height="320" width="108" x="911.5" y="829.7" as="geometry" />
+        </mxCell>
+        <mxCell id="p8-icon" parent="1" style="ellipse;fillColor=#66EE88;strokeColor=#009922;strokeWidth=2.5;fontSize=24;align=center;verticalAlign=middle;fontColor=#333333;" value="🔔" vertex="1">
+          <mxGeometry height="72" width="72" x="1056.7" y="1066.4" as="geometry" />
+        </mxCell>
+        <mxCell id="p8-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;fontColor=#009922;" value="Notifications" vertex="1">
+          <mxGeometry height="20" width="220" x="1067.3" y="1163.3" as="geometry" />
+        </mxCell>
+        <mxCell id="p8-d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="Amazon SNS &amp; Pinpoint," vertex="1">
+          <mxGeometry height="16" width="220" x="1067.3" y="1187.3" as="geometry" />
+        </mxCell>
+        <mxCell id="p8-d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="alerts, nudges, escalation." vertex="1">
+          <mxGeometry height="16" width="220" x="1067.3" y="1203.3" as="geometry" />
+        </mxCell>
+        <mxCell id="p9-petal" parent="1" style="ellipse;fillColor=#AAEE44;strokeColor=#55AA00;gradientColor=#77CC00;gradientDirection=south;opacity=95;rotation=249.2;" value="" vertex="1">
+          <mxGeometry height="320" width="108" x="838.6" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="p9-icon" parent="1" style="ellipse;fillColor=#AAEE44;strokeColor=#55AA00;strokeWidth=2.5;fontSize=24;align=center;verticalAlign=middle;fontColor=#333333;" value="⏱" vertex="1">
+          <mxGeometry height="72" width="72" x="916.9" y="1162.9" as="geometry" />
+        </mxCell>
+        <mxCell id="p9-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;fontColor=#55AA00;" value="Scheduling" vertex="1">
+          <mxGeometry height="20" width="220" x="883" y="1290.6" as="geometry" />
+        </mxCell>
+        <mxCell id="p9-d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="Amazon EventBridge," vertex="1">
+          <mxGeometry height="16" width="220" x="883" y="1314.6" as="geometry" />
+        </mxCell>
+        <mxCell id="p9-d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="daily &amp; weekly jobs." vertex="1">
+          <mxGeometry height="16" width="220" x="883" y="1330.6" as="geometry" />
+        </mxCell>
+        <mxCell id="p10-petal" parent="1" style="ellipse;fillColor=#DDCC44;strokeColor=#998800;gradientColor=#BBAA00;gradientDirection=south;opacity=95;rotation=276.9;" value="" vertex="1">
+          <mxGeometry height="320" width="108" x="750.7" y="890.7" as="geometry" />
+        </mxCell>
+        <mxCell id="p10-icon" parent="1" style="ellipse;fillColor=#DDCC44;strokeColor=#998800;strokeWidth=2.5;fontSize=24;align=center;verticalAlign=middle;fontColor=#333333;" value="✅" vertex="1">
+          <mxGeometry height="72" width="72" x="748.2" y="1183.4" as="geometry" />
+        </mxCell>
+        <mxCell id="p10-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;fontColor=#998800;" value="Testing" vertex="1">
+          <mxGeometry height="20" width="220" x="660.6" y="1317.6" as="geometry" />
+        </mxCell>
+        <mxCell id="p10-d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="pytest + Hypothesis," vertex="1">
+          <mxGeometry height="16" width="220" x="660.6" y="1341.6" as="geometry" />
+        </mxCell>
+        <mxCell id="p10-d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="property-based testing." vertex="1">
+          <mxGeometry height="16" width="220" x="660.6" y="1357.6" as="geometry" />
+        </mxCell>
+        <mxCell id="p11-petal" parent="1" style="ellipse;fillColor=#FFAA44;strokeColor=#CC5500;gradientColor=#EE7700;gradientDirection=south;opacity=95;rotation=304.6;" value="" vertex="1">
+          <mxGeometry height="320" width="108" x="667.9" y="859.3" as="geometry" />
+        </mxCell>
+        <mxCell id="p11-icon" parent="1" style="ellipse;fillColor=#FFAA44;strokeColor=#CC5500;strokeWidth=2.5;fontSize=24;align=center;verticalAlign=middle;fontColor=#333333;" value="⚙" vertex="1">
+          <mxGeometry height="72" width="72" x="589.3" y="1123.2" as="geometry" />
+        </mxCell>
+        <mxCell id="p11-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;fontColor=#CC5500;" value="Dev Tool" vertex="1">
+          <mxGeometry height="20" width="220" x="451.1" y="1238.2" as="geometry" />
+        </mxCell>
+        <mxCell id="p11-d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="AWS Kiro — AI-powered IDE," vertex="1">
+          <mxGeometry height="16" width="220" x="451.1" y="1262.2" as="geometry" />
+        </mxCell>
+        <mxCell id="p11-d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="used for development." vertex="1">
+          <mxGeometry height="16" width="220" x="451.1" y="1278.2" as="geometry" />
+        </mxCell>
+        <mxCell id="p12-petal" parent="1" style="ellipse;fillColor=#FF7755;strokeColor=#CC2200;gradientColor=#EE4422;gradientDirection=south;opacity=95;rotation=332.3;" value="" vertex="1">
+          <mxGeometry height="320" width="108" x="609.2" y="793" as="geometry" />
+        </mxCell>
+        <mxCell id="p12-icon" parent="1" style="ellipse;fillColor=#FF7755;strokeColor=#CC2200;strokeWidth=2.5;fontSize=24;align=center;verticalAlign=middle;fontColor=#333333;" value="📊" vertex="1">
+          <mxGeometry height="72" width="72" x="476.7" y="996" as="geometry" />
+        </mxCell>
+        <mxCell id="p12-lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=12;fontStyle=1;fontColor=#CC2200;" value="Monitoring" vertex="1">
+          <mxGeometry height="20" width="220" x="302.6" y="1070.5" as="geometry" />
+        </mxCell>
+        <mxCell id="p12-d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="Amazon CloudWatch," vertex="1">
+          <mxGeometry height="16" width="220" x="302.6" y="1094.5" as="geometry" />
+        </mxCell>
+        <mxCell id="p12-d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=9;fontColor=#444444;" value="IAM + KMS security." vertex="1">
+          <mxGeometry height="16" width="220" x="302.6" y="1110.5" as="geometry" />
+        </mxCell>
+        <mxCell id="hub-shadow" parent="1" style="ellipse;fillColor=#E0E0E0;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="148" width="148" x="753" y="797" as="geometry" />
+        </mxCell>
+        <mxCell id="hub-outer" parent="1" style="ellipse;fillColor=#F8F8F8;strokeColor=#CCCCCC;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="144" width="144" x="755" y="795" as="geometry" />
+        </mxCell>
+        <mxCell id="hub-inner" parent="1" style="ellipse;fillColor=#EFEFEF;strokeColor=#BBBBBB;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="108" width="108" x="773" y="813" as="geometry" />
+        </mxCell>
+        <mxCell id="hub-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#333333;" value="MindGuard&#xa;AI" vertex="1">
+          <mxGeometry height="44" width="108" x="773" y="845" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

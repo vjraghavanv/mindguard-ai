@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MindGuard AI – Demo</title>
+<style>
+  :root {
+    --bg: #0f0f1a; --surface: #1a1a2e; --card: #16213e;
+    --accent: #8C4FFF; --accent2: #E7157B; --green: #27AE60;
+    --text: #e8e8f0; --muted: #8888aa; --border: #2a2a4a;
+    --warn: #D4A017; --danger: #E74C3C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+
+  /* ── NAV ── */
+  nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+  .logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); letter-spacing: -0.5px; }
+  .logo span { color: var(--accent2); }
+  .nav-right { display: flex; gap: 1rem; align-items: center; }
+  .nav-user { font-size: 0.85rem; color: var(--muted); }
+  .btn { padding: 0.45rem 1.1rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: opacity .15s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+  .btn-danger { background: var(--danger); color: #fff; }
+  .btn-sm { padding: 0.3rem 0.8rem; font-size: 0.8rem; }
+
+  /* ── LAYOUT ── */
+  .app { display: none; }
+  .auth-screen { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 60px); padding: 2rem; }
+  .auth-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 420px; }
+  .auth-card h2 { font-size: 1.5rem; margin-bottom: 0.4rem; }
+  .auth-card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.8rem; }
+  .tabs { display: flex; gap: 0; margin-bottom: 1.5rem; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .tab { flex: 1; padding: 0.6rem; text-align: center; cursor: pointer; font-size: 0.9rem; background: var(--card); color: var(--muted); transition: all .15s; }
+  .tab.active { background: var(--accent); color: #fff; font-weight: 600; }
+
+  /* ── FORM ── */
+  .field { margin-bottom: 1rem; }
+  .field label { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 0.35rem; font-weight: 500; }
+  .field input, .field textarea, .field select {
+    width: 100%; padding: 0.65rem 0.9rem; background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; color: var(--text); font-size: 0.95rem; outline: none; transition: border .15s;
+  }
+  .field input:focus, .field textarea:focus { border-color: var(--accent); }
+  .field textarea { resize: vertical; min-height: 120px; font-family: inherit; line-height: 1.5; }
+  .error-msg { color: var(--danger); font-size: 0.82rem; margin-top: 0.4rem; }
+  .success-msg { color: var(--green); font-size: 0.82rem; margin-top: 0.4rem; }
+
+  /* ── MAIN APP ── */
+  .main-layout { display: grid; grid-template-columns: 280px 1fr; min-height: calc(100vh - 60px); }
+  .sidebar { background: var(--surface); border-right: 1px solid var(--border); padding: 1.5rem 1rem; }
+  .sidebar-section { margin-bottom: 2rem; }
+  .sidebar-section h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 0.8rem; }
+  .sidebar-item { padding: 0.6rem 0.8rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem; color: var(--muted); transition: all .15s; display: flex; align-items: center; gap: 0.6rem; }
+  .sidebar-item:hover, .sidebar-item.active { background: var(--card); color: var(--text); }
+  .sidebar-item.active { color: var(--accent); }
+  .content { padding: 2rem; overflow-y: auto; }
+
+  /* ── JOURNAL PANEL ── */
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .panel-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .panel-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.8rem; }
+  .journal-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; max-width: 680px; }
+  .char-count { font-size: 0.78rem; color: var(--muted); text-align: right; margin-top: 0.3rem; }
+
+  /* ── RESULT CARD ── */
+  .result-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-top: 1.5rem; max-width: 680px; }
+  .result-card h3 { font-size: 1rem; margin-bottom: 1rem; color: var(--accent); }
+  .score-ring { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.2rem; }
+  .ring { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; border: 4px solid; flex-shrink: 0; }
+  .ring.low    { border-color: var(--green);  color: var(--green);  background: #0a2a14; }
+  .ring.medium { border-color: var(--warn);   color: var(--warn);   background: #1a1200; }
+  .ring.high   { border-color: var(--danger); color: var(--danger); background: #2a0a00; }
+  .ring.crisis { border-color: var(--danger); color: var(--danger); background: #3a0000; animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
+  .score-meta h4 { font-size: 1rem; margin-bottom: 0.3rem; }
+  .score-meta p  { font-size: 0.85rem; color: var(--muted); }
+  .sentiment-badge { display: inline-block; padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; margin-bottom: 1rem; }
+  .POSITIVE { background: #0a2a14; color: #4ade80; border: 1px solid #27AE60; }
+  .NEGATIVE { background: #2a0a00; color: #f87171; border: 1px solid #E74C3C; }
+  .NEUTRAL  { background: #1a1a2e; color: #94a3b8; border: 1px solid #4a4a6a; }
+  .MIXED    { background: #1a1200; color: #fbbf24; border: 1px solid #D4A017; }
+  .coping-box { background: var(--surface); border-left: 3px solid var(--accent); padding: 0.9rem 1rem; border-radius: 0 8px 8px 0; font-size: 0.9rem; line-height: 1.6; margin-top: 0.8rem; }
+  .crisis-box { background: #2a0000; border: 1px solid var(--danger); border-radius: 10px; padding: 1rem; margin-top: 1rem; font-size: 0.88rem; }
+  .crisis-box strong { color: var(--danger); }
+  .emotion-bars { margin-top: 1rem; }
+  .emotion-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; font-size: 0.82rem; }
+  .emotion-label { width: 60px; color: var(--muted); text-transform: capitalize; }
+  .emotion-bar-bg { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .emotion-bar { height: 100%; border-radius: 3px; transition: width .4s; }
+  .loading { display: flex; align-items: center; gap: 0.8rem; color: var(--muted); font-size: 0.9rem; padding: 1rem 0; }
+  .spinner { width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── HISTORY ── */
+  .history-list { max-width: 680px; }
+  .history-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; cursor: pointer; transition: border-color .15s; }
+  .history-item:hover { border-color: var(--accent); }
+  .history-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+  .history-date { font-size: 0.78rem; color: var(--muted); }
+  .history-text { font-size: 0.88rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .history-scores { display: flex; gap: 0.8rem; margin-top: 0.6rem; }
+  .score-chip { font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 20px; font-weight: 600; }
+  .score-chip.low    { background: #0a2a14; color: #4ade80; }
+  .score-chip.medium { background: #1a1200; color: #fbbf24; }
+  .score-chip.high   { background: #2a0a00; color: #f87171; }
+  .empty-state { text-align: center; color: var(--muted); padding: 3rem 1rem; font-size: 0.95rem; }
+
+  /* ── DASHBOARD ── */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; max-width: 680px; margin-bottom: 2rem; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+  .stat-card .stat-val { font-size: 2rem; font-weight: 800; }
+  .stat-card .stat-lbl { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+  .alert-banner { background: #2a0a00; border: 1px solid var(--danger); border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 1rem; font-size: 0.88rem; max-width: 680px; }
+  .alert-banner.warn { background: #1a1200; border-color: var(--warn); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Mind<span>Guard</span> AI</div>
+  <div class="nav-right">
+    <span class="nav-user" id="nav-user"></span>
+    <button class="btn btn-secondary btn-sm" id="logout-btn" style="display:none" onclick="logout()">Sign out</button>
+  </div>
+</nav>
+
+<!-- AUTH SCREEN -->
+<div class="auth-screen" id="auth-screen">
+  <div class="auth-card">
+    <h2>Welcome to MindGuard AI</h2>
+    <p>Your proactive mental health companion</p>
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('login')">Sign In</div>
+      <div class="tab" onclick="switchTab('register')">Register</div>
+    </div>
+
+    <!-- Login form -->
+    <div id="login-form">
+      <div class="field"><label>Email</label><input type="email" id="login-email" placeholder="you@example.com" /></div>
+      <div class="field"><label>Password</label><input type="password" id="login-password" placeholder="••••••••••••" /></div>
+      <div id="login-error" class="error-msg"></div>
+      <button class="btn btn-primary" style="width:100%;margin-top:.5rem" onclick="doLogin()">Sign In</button>
+      <p style="font-size:.78rem;color:var(--muted);margin-top:.8rem;text-align:center">
+        Demo: register first, then sign in with the same credentials
+      </p>
+    </div>
+
+    <!-- Register form -->
+    <div id="register-form" style="display:none">
+      <div class="field"><label>Email</label><input type="email" id="reg-email" placeholder="you@example.com" /></div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="reg-password" placeholder="Min 12 chars, uppercase, digit, special" />
+        <div style="font-size:.75rem;color:var(--muted);margin-top:.3rem">e.g. SecurePass1!</div>
+      </div>
+      <div id="reg-error" class="error-msg"></div>
+      <div id="reg-success" class="success-msg"></div>
+      <button class="btn btn-primary" style="width:100%;margin-top:.5rem" onclick="doRegister()">Create Account</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div class="app" id="app">
+  <div class="main-layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <h4>Menu</h4>
+        <div class="sidebar-item active" id="nav-journal" onclick="showPanel('journal')">📝 New Journal Entry</div>
+        <div class="sidebar-item" id="nav-history" onclick="showPanel('history')">📋 My Entries</div>
+        <div class="sidebar-item" id="nav-dashboard" onclick="showPanel('dashboard')">📊 Dashboard</div>
+      </div>
+      <div class="sidebar-section">
+        <h4>About</h4>
+        <div style="font-size:.78rem;color:var(--muted);line-height:1.6;padding:0 .5rem">
+          This demo runs the real Lambda pipeline locally using moto to mock AWS services.<br><br>
+          Sentiment → Amazon Comprehend<br>
+          Burnout Score → Amazon Bedrock<br>
+          Storage → Amazon DynamoDB
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- Journal Panel -->
+      <div class="panel active" id="panel-journal">
+        <div class="panel-title">📝 New Journal Entry</div>
+        <div class="panel-sub">How are you feeling today? Write freely — this is your safe space.</div>
+        <div class="journal-card">
+          <div class="field">
+            <label>Entry Type</label>
+            <select id="entry-type" onchange="toggleEntryType()">
+              <option value="text">Text Journal</option>
+              <option value="voice">Voice Journal (simulated)</option>
+            </select>
+          </div>
+          <div id="text-section">
+            <div class="field">
+              <label>Your thoughts</label>
+              <textarea id="journal-text" maxlength="5000" placeholder="I've been feeling overwhelmed with deadlines lately..." oninput="updateCharCount()"></textarea>
+              <div class="char-count"><span id="char-count">0</span> / 5000</div>
+            </div>
+          </div>
+          <div id="voice-section" style="display:none">
+            <div class="field">
+              <label>Simulated transcript (voice demo)</label>
+              <textarea id="voice-text" placeholder="Type what you would say in a voice note..." oninput="updateCharCount()"></textarea>
+            </div>
+            <div style="font-size:.78rem;color:var(--muted);margin-bottom:1rem">
+              In production this would upload an MP3 to S3 → Amazon Transcribe → text pipeline.
+            </div>
+          </div>
+          <div id="journal-error" class="error-msg"></div>
+          <button class="btn btn-primary" id="submit-btn" onclick="submitJournal()">Analyze & Save Entry</button>
+        </div>
+
+        <!-- Result -->
+        <div id="result-area"></div>
+      </div>
+
+      <!-- History Panel -->
+      <div class="panel" id="panel-history">
+        <div class="panel-title">📋 My Entries</div>
+        <div class="panel-sub">Your recent journal entries and analysis results.</div>
+        <div class="history-list" id="history-list">
+          <div class="empty-state">No entries yet. Write your first journal entry!</div>
+        </div>
+      </div>
+
+      <!-- Dashboard Panel -->
+      <div class="panel" id="panel-dashboard">
+        <div class="panel-title">📊 Dashboard</div>
+        <div class="panel-sub">Your emotional health at a glance.</div>
+        <div id="dashboard-content">
+          <div class="empty-state">Submit a journal entry to see your dashboard.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ── State ────────────────────────────────────────────────────────────────────
+let token = null, userId = null, userEmail = null;
+
+// ── Auth ─────────────────────────────────────────────────────────────────────
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', (tab==='login'?i===0:i===1)));
+  document.getElementById('login-form').style.display    = tab==='login'    ? '' : 'none';
+  document.getElementById('register-form').style.display = tab==='register' ? '' : 'none';
+}
+
+async function doRegister() {
+  const email = document.getElementById('reg-email').value.trim();
+  const password = document.getElementById('reg-password').value;
+  document.getElementById('reg-error').textContent = '';
+  document.getElementById('reg-success').textContent = '';
+  const res = await fetch('/auth/register', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email, password}) });
+  const data = await res.json();
+  if (!res.ok) { document.getElementById('reg-error').textContent = data.error; return; }
+  document.getElementById('reg-success').textContent = '✅ Registered! Switch to Sign In.';
+}
+
+async function doLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  document.getElementById('login-error').textContent = '';
+  const res = await fetch('/auth/login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email, password}) });
+  const data = await res.json();
+  if (!res.ok) { document.getElementById('login-error').textContent = data.error; return; }
+  token = data.access_token; userId = data.user_id; userEmail = email;
+  document.getElementById('auth-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  document.getElementById('nav-user').textContent = email;
+  document.getElementById('logout-btn').style.display = '';
+}
+
+function logout() {
+  token = null; userId = null; userEmail = null;
+  document.getElementById('auth-screen').style.display = '';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('nav-user').textContent = '';
+  document.getElementById('logout-btn').style.display = 'none';
+  document.getElementById('result-area').innerHTML = '';
+  document.getElementById('journal-text').value = '';
+  document.getElementById('char-count').textContent = '0';
+}
+
+// ── Navigation ────────────────────────────────────────────────────────────────
+function showPanel(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  document.getElementById('nav-' + name).classList.add('active');
+  if (name === 'history') loadHistory();
+  if (name === 'dashboard') loadDashboard();
+}
+
+function toggleEntryType() {
+  const v = document.getElementById('entry-type').value;
+  document.getElementById('text-section').style.display  = v==='text'  ? '' : 'none';
+  document.getElementById('voice-section').style.display = v==='voice' ? '' : 'none';
+}
+
+function updateCharCount() {
+  const t = document.getElementById('journal-text').value;
+  document.getElementById('char-count').textContent = t.length;
+}
+
+// ── Journal Submit ────────────────────────────────────────────────────────────
+async function submitJournal() {
+  const entryType = document.getElementById('entry-type').value;
+  const text = entryType === 'voice'
+    ? document.getElementById('voice-text').value.trim()
+    : document.getElementById('journal-text').value.trim();
+
+  document.getElementById('journal-error').textContent = '';
+  if (!text) { document.getElementById('journal-error').textContent = 'Please write something first.'; return; }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true; btn.textContent = 'Analyzing…';
+  document.getElementById('result-area').innerHTML = '<div class="result-card"><div class="loading"><div class="spinner"></div>Running sentiment analysis + burnout scoring…</div></div>';
+
+  const body = entryType === 'voice'
+    ? { entry_type: 'voice', audio_format: 'mp3', audio_duration_seconds: 60, audio_data: text, text_content: text }
+    : { entry_type: 'text', text_content: text };
+
+  try {
+    const res = await fetch('/journal', { method:'POST', headers:{'Content-Type':'application/json','Authorization': token}, body: JSON.stringify(body) });
+    const data = await res.json();
+    btn.disabled = false; btn.textContent = 'Analyze & Save Entry';
+    if (!res.ok) { document.getElementById('result-area').innerHTML = `<div class="result-card"><div class="error-msg">${data.error}</div></div>`; return; }
+    renderResult(data);
+  } catch(e) {
+    btn.disabled = false; btn.textContent = 'Analyze & Save Entry';
+    document.getElementById('result-area').innerHTML = '<div class="result-card"><div class="error-msg">Server error. Is demo/app.py running?</div></div>';
+  }
+}
+
+function scoreClass(s) { return s > 85 ? 'crisis' : s > 70 ? 'high' : s > 40 ? 'medium' : 'low'; }
+function scoreLabel(s) { return s > 85 ? '🚨 Crisis Risk' : s > 70 ? '⚠️ High Risk' : s > 40 ? '⚡ Moderate' : '✅ Low Risk'; }
+
+function renderResult(data) {
+  const score = data.burnout_score ?? 0;
+  const sentiment = data.sentiment?.sentiment ?? data.sentiment ?? 'NEUTRAL';
+  const sentScore = data.sentiment?.sentiment_score ?? 0;
+  const emotions = data.sentiment?.emotions ?? {};
+  const coping = data.coping_suggestion ?? '';
+  const crisis = data.crisis_helpline;
+  const cls = scoreClass(score);
+
+  const emotionColors = { joy:'#4ade80', sadness:'#60a5fa', anger:'#f87171', fear:'#c084fc', disgust:'#fb923c' };
+  const emotionBars = Object.entries(emotions).map(([k,v]) =>
+    `<div class="emotion-row">
+      <span class="emotion-label">${k}</span>
+      <div class="emotion-bar-bg"><div class="emotion-bar" style="width:${Math.round(v*100)}%;background:${emotionColors[k]||'#8888aa'}"></div></div>
+      <span style="font-size:.75rem;color:var(--muted);width:36px;text-align:right">${Math.round(v*100)}%</span>
+    </div>`
+  ).join('');
+
+  const crisisHtml = crisis ? `
+    <div class="crisis-box">
+      <strong>🆘 ${crisis.name}</strong><br>
+      ${crisis.text}<br>
+      <strong>Call / Text: ${crisis.number}</strong> · <a href="${crisis.url}" target="_blank" style="color:#f87171">${crisis.url}</a>
+    </div>` : '';
+
+  document.getElementById('result-area').innerHTML = `
+    <div class="result-card">
+      <h3>Analysis Result</h3>
+      <div class="score-ring">
+        <div class="ring ${cls}">${score}</div>
+        <div class="score-meta">
+          <h4>${scoreLabel(score)}</h4>
+          <p>Burnout Score out of 100</p>
+          ${score > 70 ? '<p style="color:var(--danger);font-size:.8rem;margin-top:.3rem">🔔 Alert sent (score > 70)</p>' : ''}
+        </div>
+      </div>
+      <div class="sentiment-badge ${sentiment}">${sentiment} · ${Math.round(sentScore*100)}% confidence</div>
+      ${emotionBars ? `<div class="emotion-bars">${emotionBars}</div>` : ''}
+      <div style="margin-top:1rem;font-size:.82rem;color:var(--muted);font-weight:600">💡 Coping Suggestion</div>
+      <div class="coping-box">${coping}</div>
+      ${crisisHtml}
+      <div style="margin-top:1rem;font-size:.75rem;color:var(--muted)">Entry ID: ${data.entry_id} · ${data.created_at}</div>
+    </div>`;
+}
+
+// ── History ───────────────────────────────────────────────────────────────────
+async function loadHistory() {
+  const res = await fetch('/history', { headers:{'Authorization': token} });
+  const data = await res.json();
+  const list = document.getElementById('history-list');
+  if (!data.entries?.length) { list.innerHTML = '<div class="empty-state">No entries yet.</div>'; return; }
+  list.innerHTML = data.entries.map(e => {
+    const cls = scoreClass(e.burnout_score);
+    const date = new Date(e.created_at).toLocaleString();
+    return `<div class="history-item">
+      <div class="history-meta">
+        <span class="history-date">${date}</span>
+        <span class="sentiment-badge ${e.sentiment_label}" style="margin:0">${e.sentiment_label}</span>
+      </div>
+      <div class="history-text">${e.text_content}</div>
+      <div class="history-scores">
+        <span class="score-chip ${cls}">Burnout: ${e.burnout_score}/100</span>
+        <span class="score-chip" style="background:var(--surface);color:var(--muted)">${e.entry_type}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── Dashboard ─────────────────────────────────────────────────────────────────
+async function loadDashboard() {
+  const res = await fetch('/history', { headers:{'Authorization': token} });
+  const data = await res.json();
+  const entries = data.entries || [];
+  const el = document.getElementById('dashboard-content');
+  if (!entries.length) { el.innerHTML = '<div class="empty-state">Submit a journal entry to see your dashboard.</div>'; return; }
+
+  const avg = Math.round(entries.reduce((s,e) => s + e.burnout_score, 0) / entries.length);
+  const max = Math.max(...entries.map(e => e.burnout_score));
+  const neg = entries.filter(e => e.sentiment_label === 'NEGATIVE').length;
+  const cls = scoreClass(avg);
+
+  const alertHtml = avg > 70
+    ? `<div class="alert-banner">🚨 Your average burnout score is <strong>${avg}/100</strong>. Consider taking a break and using the coping suggestions.</div>`
+    : avg > 40
+    ? `<div class="alert-banner warn">⚡ Moderate stress detected. Average score: <strong>${avg}/100</strong>. Keep journaling!</div>`
+    : '';
+
+  el.innerHTML = `
+    ${alertHtml}
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-val" style="color:var(--accent)">${entries.length}</div><div class="stat-lbl">Total Entries</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:${cls==='low'?'var(--green)':cls==='medium'?'var(--warn)':'var(--danger)'}">${avg}</div><div class="stat-lbl">Avg Burnout Score</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:var(--danger)">${max}</div><div class="stat-lbl">Peak Score</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:var(--accent2)">${neg}</div><div class="stat-lbl">Negative Entries</div></div>
+    </div>
+    <div style="font-size:.85rem;color:var(--muted);max-width:680px">
+      Last ${entries.length} entries shown. In production, EventBridge triggers a weekly AI-generated report via Amazon Bedrock.
+    </div>`;
+}
+</script>
+</body>
+</html>

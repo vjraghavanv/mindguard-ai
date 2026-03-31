@@ -1,0 +1,426 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  MindGuard AI – Serverless Infrastructure
+  Deploys: DynamoDB, S3, Cognito, API Gateway, Lambda functions, SNS, EventBridge
+
+Parameters:
+  Environment:
+    Type: String
+    Default: dev
+    AllowedValues: [dev, staging, prod]
+  CognitoCallbackUrl:
+    Type: String
+    Default: http://localhost:3000
+    Description: Frontend callback URL for Cognito hosted UI
+
+# ─────────────────────────────────────────────────────────────────────────────
+# GLOBALS
+# ─────────────────────────────────────────────────────────────────────────────
+Globals:
+  Function:
+    Runtime: python3.11
+    Timeout: 30
+    MemorySize: 256
+    Environment:
+      Variables:
+        DYNAMODB_TABLE: !Ref TrendStore
+        AUDIO_S3_BUCKET: !Ref AudioBucket
+        COGNITO_USER_POOL_ID: !Ref UserPool
+        COGNITO_CLIENT_ID: !Ref UserPoolClient
+        SNS_BURNOUT_ALERT_TOPIC_ARN: !Ref BurnoutAlertTopic
+        SNS_ESCALATION_TOPIC_ARN: !Ref EscalationTopic
+        AWS_DEFAULT_REGION: !Ref AWS::Region
+
+# ─────────────────────────────────────────────────────────────────────────────
+# RESOURCES
+# ─────────────────────────────────────────────────────────────────────────────
+Resources:
+
+  # ── DynamoDB: Trend_Store (single-table) ────────────────────────────────────
+  TrendStore:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub mindguard-trend-store-${Environment}
+      BillingMode: PAY_PER_REQUEST
+      SSESpecification:
+        SSEEnabled: true          # AES-256 KMS encryption at rest
+      AttributeDefinitions:
+        - AttributeName: user_id
+          AttributeType: S
+        - AttributeName: sk
+          AttributeType: S
+      KeySchema:
+        - AttributeName: user_id
+          KeyType: HASH
+        - AttributeName: sk
+          KeyType: RANGE
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      Tags:
+        - Key: Project
+          Value: MindGuardAI
+
+  # ── S3: Encrypted Audio Storage ─────────────────────────────────────────────
+  AudioBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub mindguard-audio-${Environment}-${AWS::AccountId}
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      LifecycleConfiguration:
+        Rules:
+          - Id: DeleteOldAudio
+            Status: Enabled
+            ExpirationInDays: 90   # auto-delete audio after 90 days
+
+  # ── Cognito: User Pool ───────────────────────────────────────────────────────
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: !Sub mindguard-users-${Environment}
+      AutoVerifiedAttributes: [email]
+      UsernameAttributes: [email]
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 12
+          RequireUppercase: true
+          RequireLowercase: true
+          RequireNumbers: true
+          RequireSymbols: true
+      Schema:
+        - Name: email
+          AttributeDataType: String
+          Required: true
+          Mutable: false
+      MfaConfiguration: "OFF"
+      AccountRecoverySetting:
+        RecoveryMechanisms:
+          - Name: verified_email
+            Priority: 1
+
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: !Sub mindguard-app-${Environment}
+      UserPoolId: !Ref UserPool
+      GenerateSecret: false
+      ExplicitAuthFlows:
+        - ALLOW_USER_PASSWORD_AUTH
+        - ALLOW_REFRESH_TOKEN_AUTH
+      AccessTokenValidity: 60       # minutes
+      RefreshTokenValidity: 30      # days
+      TokenValidityUnits:
+        AccessToken: minutes
+        RefreshToken: days
+      CallbackURLs:
+        - !Ref CognitoCallbackUrl
+      AllowedOAuthFlows: [code]
+      AllowedOAuthScopes: [email, openid, profile]
+      AllowedOAuthFlowsUserPoolClient: true
+
+  # ── SNS Topics ───────────────────────────────────────────────────────────────
+  BurnoutAlertTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Sub mindguard-burnout-alert-${Environment}
+      DisplayName: MindGuard Burnout Alert
+
+  EscalationTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Sub mindguard-escalation-${Environment}
+      DisplayName: MindGuard Escalation Alert
+
+  # ── IAM: Lambda Execution Role ───────────────────────────────────────────────
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub mindguard-lambda-role-${Environment}
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: MindGuardLambdaPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: [dynamodb:PutItem, dynamodb:GetItem, dynamodb:Query, dynamodb:UpdateItem, dynamodb:Scan]
+                Resource: !GetAtt TrendStore.Arn
+              - Effect: Allow
+                Action: [s3:PutObject, s3:GetObject]
+                Resource: !Sub ${AudioBucket.Arn}/audio/*
+              - Effect: Allow
+                Action: [sns:Publish]
+                Resource: [!Ref BurnoutAlertTopic, !Ref EscalationTopic]
+              - Effect: Allow
+                Action: [comprehend:DetectSentiment]
+                Resource: "*"
+              - Effect: Allow
+                Action: [bedrock:InvokeModel]
+                Resource: "arn:aws:bedrock:*::foundation-model/anthropic.claude-3-sonnet-20240229-v1:0"
+              - Effect: Allow
+                Action: [transcribe:StartTranscriptionJob, transcribe:GetTranscriptionJob]
+                Resource: "*"
+              - Effect: Allow
+                Action: [cognito-idp:AdminGetUser]
+                Resource: !GetAtt UserPool.Arn
+
+  # ── Lambda Functions ─────────────────────────────────────────────────────────
+  AuthFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub mindguard-auth-${Environment}
+      Handler: src.lambdas.auth_lambda.handler
+      Role: !GetAtt LambdaRole.Arn
+      Code:
+        S3Bucket: !Sub mindguard-deploy-${AWS::AccountId}
+        S3Key: !Sub ${Environment}/mindguard.zip
+      Description: Register, login, token refresh, password reset
+
+  JournalIngestFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub mindguard-journal-ingest-${Environment}
+      Handler: src.lambdas.journal_ingest_lambda.handler
+      Role: !GetAtt LambdaRole.Arn
+      Timeout: 60
+      Code:
+        S3Bucket: !Sub mindguard-deploy-${AWS::AccountId}
+        S3Key: !Sub ${Environment}/mindguard.zip
+      Description: Voice/text journal ingestion, Comprehend + Bedrock pipeline
+
+  NudgeFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub mindguard-nudge-${Environment}
+      Handler: src.lambdas.nudge_lambda.handler
+      Role: !GetAtt LambdaRole.Arn
+      Code:
+        S3Bucket: !Sub mindguard-deploy-${AWS::AccountId}
+        S3Key: !Sub ${Environment}/mindguard.zip
+      Description: EventBridge-triggered daily nudge sender
+
+  ReportFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub mindguard-report-${Environment}
+      Handler: src.lambdas.report_lambda.handler
+      Role: !GetAtt LambdaRole.Arn
+      Timeout: 60
+      Code:
+        S3Bucket: !Sub mindguard-deploy-${AWS::AccountId}
+        S3Key: !Sub ${Environment}/mindguard.zip
+      Description: Weekly emotional health report generator
+
+  ScoreRecomputeFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub mindguard-score-recompute-${Environment}
+      Handler: src.lambdas.score_recompute_lambda.handler
+      Role: !GetAtt LambdaRole.Arn
+      Code:
+        S3Bucket: !Sub mindguard-deploy-${AWS::AccountId}
+        S3Key: !Sub ${Environment}/mindguard.zip
+      Description: Daily burnout score recompute
+
+  AccountSettingsFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub mindguard-account-settings-${Environment}
+      Handler: src.lambdas.account_settings_lambda.handler
+      Role: !GetAtt LambdaRole.Arn
+      Code:
+        S3Bucket: !Sub mindguard-deploy-${AWS::AccountId}
+        S3Key: !Sub ${Environment}/mindguard.zip
+      Description: Notification prefs, trusted contact, escalation threshold
+
+  # ── API Gateway ──────────────────────────────────────────────────────────────
+  RestApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: !Sub mindguard-api-${Environment}
+      Description: MindGuard AI REST API
+      EndpointConfiguration:
+        Types: [REGIONAL]
+
+  CognitoAuthorizer:
+    Type: AWS::ApiGateway::Authorizer
+    Properties:
+      Name: CognitoAuthorizer
+      RestApiId: !Ref RestApi
+      Type: COGNITO_USER_POOLS
+      IdentitySource: method.request.header.Authorization
+      ProviderARNs:
+        - !GetAtt UserPool.Arn
+
+  # /auth resource (no auth required)
+  AuthResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref RestApi
+      ParentId: !GetAtt RestApi.RootResourceId
+      PathPart: auth
+
+  AuthRegisterResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref RestApi
+      ParentId: !Ref AuthResource
+      PathPart: register
+
+  AuthRegisterMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref RestApi
+      ResourceId: !Ref AuthRegisterResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${AuthFunction.Arn}/invocations
+
+  # /journal resource (Cognito-protected)
+  JournalResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref RestApi
+      ParentId: !GetAtt RestApi.RootResourceId
+      PathPart: journal
+
+  JournalMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref RestApi
+      ResourceId: !Ref JournalResource
+      HttpMethod: POST
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${JournalIngestFunction.Arn}/invocations
+
+  # ── EventBridge Schedules ────────────────────────────────────────────────────
+  DailyNudgeRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: !Sub mindguard-daily-nudge-${Environment}
+      Description: Trigger nudge Lambda daily at 9am UTC
+      ScheduleExpression: cron(0 9 * * ? *)
+      State: ENABLED
+      Targets:
+        - Id: NudgeLambdaTarget
+          Arn: !GetAtt NudgeFunction.Arn
+
+  WeeklyReportRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: !Sub mindguard-weekly-report-${Environment}
+      Description: Trigger report Lambda every Monday at 8am UTC
+      ScheduleExpression: cron(0 8 ? * MON *)
+      State: ENABLED
+      Targets:
+        - Id: ReportLambdaTarget
+          Arn: !GetAtt ReportFunction.Arn
+
+  DailyScoreRecomputeRule:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: !Sub mindguard-daily-score-recompute-${Environment}
+      Description: Recompute burnout scores daily at midnight UTC
+      ScheduleExpression: cron(0 0 * * ? *)
+      State: ENABLED
+      Targets:
+        - Id: ScoreRecomputeTarget
+          Arn: !GetAtt ScoreRecomputeFunction.Arn
+
+  # ── Lambda Permissions for EventBridge ──────────────────────────────────────
+  NudgeEventPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref NudgeFunction
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt DailyNudgeRule.Arn
+
+  ReportEventPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref ReportFunction
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt WeeklyReportRule.Arn
+
+  ScoreRecomputeEventPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref ScoreRecomputeFunction
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt DailyScoreRecomputeRule.Arn
+
+  # ── Lambda Permissions for API Gateway ──────────────────────────────────────
+  AuthLambdaApiPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref AuthFunction
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${RestApi}/*/*
+
+  JournalLambdaApiPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref JournalIngestFunction
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${RestApi}/*/*
+
+# ─────────────────────────────────────────────────────────────────────────────
+# OUTPUTS
+# ─────────────────────────────────────────────────────────────────────────────
+Outputs:
+  ApiEndpoint:
+    Description: API Gateway base URL
+    Value: !Sub https://${RestApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}
+    Export:
+      Name: !Sub MindGuardApiEndpoint-${Environment}
+
+  UserPoolId:
+    Description: Cognito User Pool ID
+    Value: !Ref UserPool
+    Export:
+      Name: !Sub MindGuardUserPoolId-${Environment}
+
+  UserPoolClientId:
+    Description: Cognito App Client ID
+    Value: !Ref UserPoolClient
+    Export:
+      Name: !Sub MindGuardUserPoolClientId-${Environment}
+
+  DynamoDBTableName:
+    Description: DynamoDB Trend Store table name
+    Value: !Ref TrendStore
+
+  AudioBucketName:
+    Description: S3 bucket for encrypted audio
+    Value: !Ref AudioBucket
+
+  BurnoutAlertTopicArn:
+    Description: SNS topic for burnout alerts
+    Value: !Ref BurnoutAlertTopic

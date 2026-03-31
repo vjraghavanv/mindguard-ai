@@ -1,0 +1,382 @@
+<mxfile host="app.diagrams.net" modified="2026-03-30" agent="Kiro" version="21.0.0" type="device">
+  <diagram name="MindGuard AI Architecture" id="mindguard-ai-arch">
+    <mxGraphModel dx="1800" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1400" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- TITLE BAR -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <mxCell id="title-bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1a1a2e;strokeColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="30" y="20" width="1840" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="title-text" value="MindGuard AI – AWS Serverless Architecture for Proactive Mental Health Monitoring" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="30" y="20" width="1840" height="54" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ZONE 1: FRONTEND / CLIENT LAYER -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <mxCell id="zone-frontend" value="Frontend / Client Layer" style="swimlane;fontStyle=1;fontSize=13;align=left;verticalAlign=top;startSize=36;fillColor=#f0f4f8;strokeColor=#0066CC;strokeWidth=2;rounded=1;arcSize=4;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="30" y="100" width="260" height="320" as="geometry" />
+        </mxCell>
+
+        <!-- React Web/Mobile -->
+        <mxCell id="react-app" value="React (TypeScript)&#xa;Web / Mobile App" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="75" y="160" width="160" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- User icon -->
+        <mxCell id="user-icon" value="User" style="shape=mxgraph.aws4.user;fillColor=#1a1a2e;strokeColor=#1a1a2e;fontColor=#232F3E;fontSize=11;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="310" width="50" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Cognito -->
+        <mxCell id="cognito" value="Amazon Cognito&#xa;User Pool" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cognito;" vertex="1" parent="1">
+          <mxGeometry x="136" y="230" width="48" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ZONE 2: API LAYER -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <mxCell id="zone-api" value="API Layer" style="swimlane;fontStyle=1;fontSize=13;align=left;verticalAlign=top;startSize=36;fillColor=#fff8e6;strokeColor=#d79b00;strokeWidth=2;rounded=1;arcSize=4;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="330" y="100" width="260" height="320" as="geometry" />
+        </mxCell>
+
+        <!-- API Gateway -->
+        <mxCell id="api-gw" value="Amazon API Gateway&#xa;(REST)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" vertex="1" parent="1">
+          <mxGeometry x="396" y="148" width="58" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- Auth Lambda -->
+        <mxCell id="lambda-auth" value="Auth Lambda&#xa;(Register/Login)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
+          <mxGeometry x="346" y="270" width="48" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- Journal Ingest Lambda -->
+        <mxCell id="lambda-ingest" value="Journal Ingest&#xa;Lambda" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
+          <mxGeometry x="456" y="270" width="48" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ZONE 3: INPUT PROCESSING -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <mxCell id="zone-input" value="Input Processing" style="swimlane;fontStyle=1;fontSize=13;align=left;verticalAlign=top;startSize=36;fillColor=#e8f5e9;strokeColor=#82b366;strokeWidth=2;rounded=1;arcSize=4;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="640" y="100" width="260" height="320" as="geometry" />
+        </mxCell>
+
+        <!-- S3 Audio -->
+        <mxCell id="s3-audio" value="Amazon S3&#xa;(Audio Storage)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="656" y="148" width="58" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- Transcribe -->
+        <mxCell id="transcribe" value="Amazon Transcribe&#xa;(Voice → Text)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.transcribe;" vertex="1" parent="1">
+          <mxGeometry x="766" y="148" width="58" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- Text input label -->
+        <mxCell id="text-input-label" value="Text Journal&#xa;(direct input)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="290" width="130" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ZONE 4: AI & ML SERVICES -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <mxCell id="zone-ai" value="AI &amp; ML Services" style="swimlane;fontStyle=1;fontSize=13;align=left;verticalAlign=top;startSize=36;fillColor=#f3e8ff;strokeColor=#9673a6;strokeWidth=2;rounded=1;arcSize=4;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="950" y="100" width="280" height="320" as="geometry" />
+        </mxCell>
+
+        <!-- Comprehend -->
+        <mxCell id="comprehend" value="Amazon Comprehend&#xa;(Sentiment + Emotion)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.comprehend;" vertex="1" parent="1">
+          <mxGeometry x="966" y="148" width="58" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- Bedrock -->
+        <mxCell id="bedrock" value="Amazon Bedrock&#xa;(Claude)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.bedrock;" vertex="1" parent="1">
+          <mxGeometry x="1096" y="148" width="58" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- Burnout Score Engine badge -->
+        <mxCell id="burnout-badge" value="🔥 Burnout Score Engine&#xa;(0–100 Risk Prediction)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;fontStyle=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="960" y="270" width="250" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ZONE 5: DATA STORAGE -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <mxCell id="zone-storage" value="Data Storage" style="swimlane;fontStyle=1;fontSize=13;align=left;verticalAlign=top;startSize=36;fillColor=#fce8e8;strokeColor=#b85450;strokeWidth=2;rounded=1;arcSize=4;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="100" width="260" height="320" as="geometry" />
+        </mxCell>
+
+        <!-- DynamoDB -->
+        <mxCell id="dynamodb" value="Amazon DynamoDB&#xa;(Trend_Store)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" vertex="1" parent="1">
+          <mxGeometry x="1296" y="148" width="58" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- S3 Data -->
+        <mxCell id="s3-data" value="Amazon S3&#xa;(Encrypted Audio)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" vertex="1" parent="1">
+          <mxGeometry x="1416" y="148" width="58" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- IAM note -->
+        <mxCell id="iam-note" value="IAM Roles + KMS&#xa;Encryption at Rest" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="280" width="230" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ZONE 6: NOTIFICATION & SCHEDULER (bottom row) -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <mxCell id="zone-notify" value="Notification &amp; Scheduling" style="swimlane;fontStyle=1;fontSize=13;align=left;verticalAlign=top;startSize=36;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;rounded=1;arcSize=4;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="330" y="480" width="820" height="220" as="geometry" />
+        </mxCell>
+
+        <!-- SNS -->
+        <mxCell id="sns" value="Amazon SNS&#xa;(Alerts + Escalation)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sns;" vertex="1" parent="1">
+          <mxGeometry x="366" y="540" width="58" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- Pinpoint -->
+        <mxCell id="pinpoint" value="Amazon Pinpoint&#xa;(Push / SMS)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.pinpoint;" vertex="1" parent="1">
+          <mxGeometry x="516" y="540" width="58" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- EventBridge -->
+        <mxCell id="eventbridge" value="EventBridge Scheduler&#xa;(Nudges / Reports)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;" vertex="1" parent="1">
+          <mxGeometry x="666" y="540" width="58" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- Scheduled Lambdas -->
+        <mxCell id="lambda-nudge" value="Nudge Lambda" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
+          <mxGeometry x="816" y="540" width="48" height="48" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lambda-report" value="Report Lambda" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
+          <mxGeometry x="1006" y="540" width="48" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ZONE 7: MONITORING & SECURITY (bottom right) -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <mxCell id="zone-monitor" value="Monitoring &amp; Security" style="swimlane;fontStyle=1;fontSize=13;align=left;verticalAlign=top;startSize=36;fillColor=#fce8e8;strokeColor=#DD344C;strokeWidth=2;rounded=1;arcSize=4;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="480" width="260" height="220" as="geometry" />
+        </mxCell>
+
+        <!-- CloudWatch -->
+        <mxCell id="cloudwatch" value="Amazon CloudWatch&#xa;(Logs + Metrics)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch;" vertex="1" parent="1">
+          <mxGeometry x="1296" y="540" width="58" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- IAM -->
+        <mxCell id="iam" value="AWS IAM&#xa;(Roles + Policies)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#DD344C;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" vertex="1" parent="1">
+          <mxGeometry x="1416" y="540" width="58" height="58" as="geometry" />
+        </mxCell>
+
+        <!-- TLS note -->
+        <mxCell id="tls-note" value="TLS in Transit + KMS at Rest" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="630" width="230" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- TRUSTED CONTACT / ESCALATION (far right) -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <mxCell id="trusted-contact" value="Trusted Contact&#xa;(Emergency Escalation)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1600" y="480" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Score Recompute Lambda -->
+        <mxCell id="lambda-score" value="Score Recompute&#xa;Lambda (Daily)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
+          <mxGeometry x="1620" y="148" width="48" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- Account Settings Lambda -->
+        <mxCell id="lambda-settings" value="Account Settings&#xa;Lambda" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
+          <mxGeometry x="1720" y="148" width="48" height="48" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ARROWS: MAIN DATA FLOW (left → right) -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+
+        <!-- User → React App -->
+        <mxCell id="arr-user-react" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#1a1a2e;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="user-icon" target="react-app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- React → Cognito (auth) -->
+        <mxCell id="arr-react-cognito" value="JWT Auth" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#DD344C;dashed=1;dashPattern=6 4;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="react-app" target="cognito">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- React → API Gateway -->
+        <mxCell id="arr-react-apigw" value="HTTPS / REST" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#d79b00;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="react-app" target="api-gw">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- API GW → Auth Lambda -->
+        <mxCell id="arr-apigw-authlambda" value="" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#ED7100;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="api-gw" target="lambda-auth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- API GW → Ingest Lambda -->
+        <mxCell id="arr-apigw-ingest" value="" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#ED7100;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="api-gw" target="lambda-ingest">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Ingest Lambda → S3 Audio -->
+        <mxCell id="arr-ingest-s3" value="Upload audio" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#7AA116;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="lambda-ingest" target="s3-audio">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- S3 → Transcribe -->
+        <mxCell id="arr-s3-transcribe" value="Trigger" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#8C4FFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="s3-audio" target="transcribe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Transcribe → Comprehend -->
+        <mxCell id="arr-transcribe-comprehend" value="Text" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#8C4FFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="transcribe" target="comprehend">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Text input → Comprehend -->
+        <mxCell id="arr-text-comprehend" value="" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#82b366;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="text-input-label" target="comprehend">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Comprehend → Bedrock -->
+        <mxCell id="arr-comprehend-bedrock" value="Sentiment data" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#9673a6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="comprehend" target="bedrock">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Bedrock → DynamoDB -->
+        <mxCell id="arr-bedrock-dynamo" value="Store scores" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#C925D1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="bedrock" target="dynamodb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Ingest Lambda → DynamoDB (journal entries) -->
+        <mxCell id="arr-ingest-dynamo" value="Journal entry" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#C925D1;dashed=1;dashPattern=6 4;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lambda-ingest" target="dynamodb">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="460" />
+              <mxPoint x="1325" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- ARROWS: NOTIFICATION FLOW -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+
+        <!-- Bedrock → SNS (burnout alert) -->
+        <mxCell id="arr-bedrock-sns" value="Score &gt; 70 alert" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#E7157B;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="bedrock" target="sns">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="460" />
+              <mxPoint x="395" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- SNS → Pinpoint -->
+        <mxCell id="arr-sns-pinpoint" value="" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#E7157B;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="sns" target="pinpoint">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- EventBridge → Nudge Lambda -->
+        <mxCell id="arr-eb-nudge" value="Schedule" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#d6b656;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="eventbridge" target="lambda-nudge">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- EventBridge → Report Lambda -->
+        <mxCell id="arr-eb-report" value="Weekly" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#d6b656;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="eventbridge" target="lambda-report">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- EventBridge → Score Recompute Lambda -->
+        <mxCell id="arr-eb-score" value="Daily recompute" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#d6b656;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="eventbridge" target="lambda-score">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="695" y="460" />
+              <mxPoint x="1644" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- SNS → Trusted Contact -->
+        <mxCell id="arr-sns-trusted" value="Score &gt; 85 escalation" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#b85450;strokeDashPattern=8 4;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="sns" target="trusted-contact">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1200" y="569" />
+              <mxPoint x="1200" y="510" />
+              <mxPoint x="1600" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Nudge Lambda → SNS -->
+        <mxCell id="arr-nudge-sns" value="" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#E7157B;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="lambda-nudge" target="sns">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- CloudWatch monitors all Lambdas (dashed) -->
+        <mxCell id="arr-cw-lambda" value="Logs" style="endArrow=open;html=1;strokeWidth=1;strokeColor=#E7157B;dashed=1;dashPattern=4 4;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="cloudwatch" target="lambda-ingest">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1260" y="569" />
+              <mxPoint x="1260" y="294" />
+              <mxPoint x="530" y="294" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- LEGEND -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <mxCell id="legend-box" value="Legend" style="swimlane;fontStyle=1;fontSize=12;align=left;verticalAlign=top;startSize=28;fillColor=#f5f5f5;strokeColor=#666666;rounded=1;arcSize=4;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="30" y="480" width="270" height="220" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg1" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#1a1a2e;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="50" y="530" as="sourcePoint" /><mxPoint x="100" y="530" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="leg1-lbl" value="Primary data flow" style="text;html=1;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="110" y="520" width="160" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg2" value="" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#E7157B;dashed=1;dashPattern=6 4;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="50" y="560" as="sourcePoint" /><mxPoint x="100" y="560" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="leg2-lbl" value="Auth / notification" style="text;html=1;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="110" y="550" width="160" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg3" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#b85450;dashed=1;dashPattern=8 4;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="50" y="590" as="sourcePoint" /><mxPoint x="100" y="590" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="leg3-lbl" value="Escalation (score &gt; 85)" style="text;html=1;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="110" y="580" width="160" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg4" value="" style="endArrow=classic;html=1;strokeWidth=1.5;strokeColor=#d6b656;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="50" y="620" as="sourcePoint" /><mxPoint x="100" y="620" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="leg4-lbl" value="Scheduled trigger" style="text;html=1;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="110" y="610" width="160" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg5-lbl" value="🔥 Burnout Score Engine: Bedrock/Claude&#xa;computes 0–100 risk score per entry" style="text;html=1;fontSize=10;align=left;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="645" width="250" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- FOOTER -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <mxCell id="footer" value="Privacy: No PII stored — emails SHA-256 hashed, user IDs are UUIDs  |  All data encrypted TLS in transit + KMS at rest  |  MindGuard AI © 2026" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="30" y="730" width="1840" height="30" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,4 @@
+# file: /Users/vijayaraghavanvashudevan/Documents/aws ug mdu/MindGuard AI/src/lambdas/journal_ingest_lambda.py
+# hypothesis_version: 6.141.1
+
+[0.0, 0.5, 200, 400, 401, 413, 500, 5000, '%Y-%m-%dT%H:%M:%SZ', 'Content-Type', 'Invalid JSON body', 'NEUTRAL', 'anger', 'application/json', 'authorizer', 'body', 'burnout_score', 'claims', 'coping_suggestion', 'created_at', 'disgust', 'emotions', 'entry_id', 'error', 'fear', 'headers', 'joy', 'requestContext', 'sadness', 'sentiment', 'sentiment_score', 'sort_key', 'statusCode', 'sub', 'text', 'text_content']

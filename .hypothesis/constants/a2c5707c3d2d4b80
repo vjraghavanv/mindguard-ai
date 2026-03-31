@@ -1,0 +1,4 @@
+# file: /Users/vijayaraghavanvashudevan/Documents/aws ug mdu/MindGuard AI/src/lambdas/nudge_lambda.py
+# hypothesis_version: 6.141.1
+
+[200, '+00:00', '09:00', ':', ':rt', 'AWS_DEFAULT_REGION', 'DYNAMODB_TABLE', 'Items', 'SNS_NUDGE_TOPIC_ARN', 'Z', 'alert', 'burnout_score', 'check_in_nudge_sent', 'created_at', 'dynamodb', 'entry_type', 'gated', 'journal_entry', 'not_nudge_time', 'notification_prefs', 'nudge', 'nudge_time', 'processed_users', 'record_type', 'record_type = :rt', 'results', 'sent', 'sk', 'skipped_reason', 'sns', 'statusCode', 'text', 'timestamp', 'trend_alert_sent', 'unknown', 'us-east-1', 'user_id', 'user_profile', 'voice']

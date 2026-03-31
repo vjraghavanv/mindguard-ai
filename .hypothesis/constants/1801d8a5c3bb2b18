@@ -1,0 +1,4 @@
+# file: /Users/vijayaraghavanvashudevan/Documents/aws ug mdu/MindGuard AI/src/lambdas/journal_ingest_lambda.py
+# hypothesis_version: 6.141.1
+
+[0.0, 0.5, 1.0, 16.0, 200, 400, 401, 413, 500, 600, 5000, '%Y-%m-%dT%H:%M:%SZ', '.', 'AES256', 'AUDIO_S3_BUCKET', 'AWS_DEFAULT_REGION', 'COMPLETED', 'Content-Type', 'FAILED', 'FailureReason', 'Invalid JSON body', 'MediaFileUri', 'NEUTRAL', 'Transcript', 'TranscriptFileUri', 'TranscriptionJob', 'Unknown', 'anger', 'application/json', 'authorizer', 'body', 'burnout_score', 'claims', 'coping_suggestion', 'created_at', 'disgust', 'emotions', 'en-US', 'entry_id', 'error', 'fear', 'headers', 'joy', 'm4a', 'mindguard-audio', 'mp3', 'requestContext', 's3', 'sadness', 'sentiment', 'sentiment_score', 'sort_key', 'statusCode', 'sub', 'text', 'text_content', 'transcribe', 'us-east-1', 'wav']

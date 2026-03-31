@@ -1,0 +1,4 @@
+# file: /Users/vijayaraghavanvashudevan/Documents/aws ug mdu/MindGuard AI/src/lambdas/score_recompute_lambda.py
+# hypothesis_version: 6.141.1
+
+[200, '%Y-%m-%dT%H:%M:%SZ', '+00:00', ':rt', 'AWS_DEFAULT_REGION', 'DYNAMODB_TABLE', 'Items', 'Z', 'burnout_score', 'created_at', 'dynamodb', 'processed_users', 'record_type', 'record_type = :rt', 'results', 'scheduled_recompute', 'sk', 'statusCode', 'timestamp', 'trigger', 'us-east-1', 'user_id', 'user_profile']

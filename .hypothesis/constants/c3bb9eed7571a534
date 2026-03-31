@@ -1,0 +1,4 @@
+# file: /Users/vijayaraghavanvashudevan/Documents/aws ug mdu/MindGuard AI/src/utils/notifications.py
+# hypothesis_version: 6.141.1
+
+['+00:00', '988', ':c', ':ca', 'AWS_DEFAULT_REGION', 'DYNAMODB_TABLE', 'DataType', 'String', 'StringValue', 'Z', 'alert', 'alert_sent', 'burnout_score', 'cancelled', 'cancelled_at', 'channel', 'contact', 'contact_notified', 'coping_suggestion', 'crisis_helpline', 'dynamodb', 'enabled', 'error', 'escalation_event', 'escalation_sent', 'escalation_threshold', 'in_app', 'message', 'name', 'notification_type', 'nudge', 'number', 'push', 'reason', 'record_type', 'sent', 'sentiment', 'show_crisis_helpline', 'sk', 'sms', 'snooze_until', 'snoozed', 'sns', 'text', 'timestamp', 'trusted_contact', 'url', 'us-east-1', 'user_id']

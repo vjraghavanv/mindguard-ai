@@ -1,0 +1,4 @@
+# file: /Users/vijayaraghavanvashudevan/Documents/aws ug mdu/MindGuard AI/src/utils/dynamodb.py
+# hypothesis_version: 6.141.1
+
+['AWS_DEFAULT_REGION', 'DYNAMODB_TABLE', 'Item', 'Items', 'dynamodb', 'sk', 'sort_key', 'us-east-1', 'user_id']

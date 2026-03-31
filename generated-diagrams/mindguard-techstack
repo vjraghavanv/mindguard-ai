@@ -1,0 +1,59 @@
+digraph "MindGuard AI – Technology Stack Overview" {
+	graph [fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label="MindGuard AI – Technology Stack Overview" nodesep=0.60 pad=2.0 rankdir=TB ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	"8a59ced81b3b4950b5380c58225aec20" [label="MindGuard AI
+Serverless Core" height=2.3 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/compute/lambda.png" shape=none]
+	"17975ff8c8aa4ddc977c11b6b374e10e" [label="Frontend
+React (TypeScript)
+Web / Mobile UI" height=2.7 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/compute/ec2.png" shape=none]
+	a25d23fa9c6f4b73a30dac1899c57acd [label="Backend
+AWS Lambda (Python)
+Serverless Pipeline" height=2.7 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/compute/lambda.png" shape=none]
+	"248b222bfbda495fa1cc9cdc62076070" [label="API Layer
+API Gateway REST
+Secure Routing" height=2.7 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/mobile/api-gateway.png" shape=none]
+	"4984545c0c564e34897478953c81f2b8" [label="Authentication
+Amazon Cognito
+User Pools + JWT" height=2.7 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/security/cognito.png" shape=none]
+	ec53ac53f8f1490294db709ebd20b652 [label="AI & Intelligence
+Amazon Bedrock
+Burnout Prediction" height=2.7 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/ml/bedrock.png" shape=none]
+	"0b77b21066c24f0b98241fa45b968b12" [label="Sentiment Analysis
+Amazon Comprehend
+Emotion Detection" height=2.7 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/ml/comprehend.png" shape=none]
+	"3b20dc9978ef4fef8a801208587b2f52" [label="Voice Processing
+Amazon Transcribe
+Speech-to-Text" height=2.7 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/ml/transcribe.png" shape=none]
+	"0d40bcd3de0640f19b950f20b439552a" [label="Data Storage
+DynamoDB + S3
+Trends & Audio" height=2.7 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/database/dynamodb.png" shape=none]
+	d5ea5483e4444d77b6177bd44bdff2c6 [label="Notifications
+SNS & Pinpoint
+Alerts & Nudges" height=2.7 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/integration/simple-notification-service-sns.png" shape=none]
+	"325f19ccc95e402bbf86928f12e4fc0a" [label="Scheduling
+EventBridge
+Daily & Weekly Jobs" height=2.7 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/integration/eventbridge-scheduler.png" shape=none]
+	df514c7a16294289b7e8c8064cef3373 [label="Monitoring & Security
+CloudWatch + IAM
+Logs & Encryption" height=2.7 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/management/cloudwatch.png" shape=none]
+	"6d6a3297106e4f488e9a4f7bee7284f7" [label="Dev & Deployment
+Amplify / CI-CD
+Infrastructure as Code" height=2.7 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/management/cloudformation.png" shape=none]
+	"21d34697251845ad9c3ec4f09dd6e966" [label="Analytics
+Trend Insights
+Emotional Reports" height=2.7 image="/Users/vijayaraghavanvashudevan/.cache/uv/archive-v0/F-2im7WgWNsos48jSCWcu/lib/python3.12/site-packages/resources/aws/management/cloudwatch-logs.png" shape=none]
+	"8a59ced81b3b4950b5380c58225aec20" -> "17975ff8c8aa4ddc977c11b6b374e10e" [color="#4A90D9" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"8a59ced81b3b4950b5380c58225aec20" -> a25d23fa9c6f4b73a30dac1899c57acd [color="#E8734A" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"8a59ced81b3b4950b5380c58225aec20" -> "248b222bfbda495fa1cc9cdc62076070" [color="#E7157B" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"8a59ced81b3b4950b5380c58225aec20" -> "4984545c0c564e34897478953c81f2b8" [color="#DD344C" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"8a59ced81b3b4950b5380c58225aec20" -> ec53ac53f8f1490294db709ebd20b652 [color="#8C4FFF" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"8a59ced81b3b4950b5380c58225aec20" -> "0b77b21066c24f0b98241fa45b968b12" [color="#6B4FFF" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"8a59ced81b3b4950b5380c58225aec20" -> "3b20dc9978ef4fef8a801208587b2f52" [color="#5B8CFF" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"8a59ced81b3b4950b5380c58225aec20" -> "0d40bcd3de0640f19b950f20b439552a" [color="#C925D1" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"8a59ced81b3b4950b5380c58225aec20" -> d5ea5483e4444d77b6177bd44bdff2c6 [color="#E7157B" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"8a59ced81b3b4950b5380c58225aec20" -> "325f19ccc95e402bbf86928f12e4fc0a" [color="#D4A017" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"8a59ced81b3b4950b5380c58225aec20" -> df514c7a16294289b7e8c8064cef3373 [color="#E74C3C" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"8a59ced81b3b4950b5380c58225aec20" -> "6d6a3297106e4f488e9a4f7bee7284f7" [color="#27AE60" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"8a59ced81b3b4950b5380c58225aec20" -> "21d34697251845ad9c3ec4f09dd6e966" [color="#16A085" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+}

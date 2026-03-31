@@ -1,0 +1,4 @@
+# file: /Users/vijayaraghavanvashudevan/Documents/aws ug mdu/MindGuard AI/src/utils/sentiment.py
+# hypothesis_version: 6.141.1
+
+[0.0, 0.1, 'AWS_DEFAULT_REGION', 'MIXED', 'NEGATIVE', 'NEUTRAL', 'Negative', 'POSITIVE', 'Positive', 'Sentiment', 'SentimentScore', 'analysis_status', 'anger', 'comprehend', 'disgust', 'emotions', 'en', 'failed', 'fear', 'joy', 'sadness', 'sentiment', 'sentiment_score', 'us-east-1']

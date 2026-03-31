@@ -1,0 +1,4 @@
+# file: /Users/vijayaraghavanvashudevan/Documents/aws ug mdu/MindGuard AI/src/models/models.py
+# hypothesis_version: 6.141.1
+
+[0.0, '09:00', 'BurnoutScoreRecord', 'Emotions', 'EscalationEvent', 'JournalEntry', 'MIXED', 'NEGATIVE', 'NEUTRAL', 'NotificationPrefs', 'POSITIVE', 'TrustedContact', 'UserProfile', 'account_locked_until', 'ai_insights', 'anger', 'audio_s3_key', 'avg_burnout_score', 'burnout_score', 'cancelled', 'cancelled_at', 'channel', 'contact', 'contact_notified', 'coping_suggestion', 'created_at', 'disgust', 'email_hash', 'emotions', 'enabled', 'entry_id', 'entry_type', 'escalation_threshold', 'fear', 'generated_at', 'in_app', 'joy', 'name', 'notification_prefs', 'nudge_time', 'report_id', 'sadness', 'sentiment_label', 'sentiment_score', 'snooze_until', 'text_content', 'timestamp', 'top_emotions', 'trigger', 'trusted_contact', 'user_id', 'week_end', 'week_start']

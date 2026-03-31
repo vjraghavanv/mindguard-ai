@@ -1,0 +1,4 @@
+# file: /Users/vijayaraghavanvashudevan/Documents/aws ug mdu/MindGuard AI/src/lambdas/account_settings_lambda.py
+# hypothesis_version: 6.141.1
+
+[100, 200, 400, 401, 404, '%Y-%m-%dT%H:%M:%SZ', '/delete', '/notification-prefs', '/snooze', '/trusted-contact', 'AWS_DEFAULT_REGION', 'Content-Type', 'DYNAMODB_TABLE', 'Invalid JSON body', 'Item', 'Route not found', 'User not found', 'application/json', 'authorizer', 'body', 'channel', 'claims', 'contact', 'deletion_deadline', 'deletion_requested', 'deletion_status', 'duration_hours', 'dynamodb', 'enabled', 'error', 'escalation_threshold', 'headers', 'message', 'name', 'notification_prefs', 'nudge_time', 'path', 'pending', 'profile', 'requestContext', 'requested_at', 'sk', 'snooze_until', 'statusCode', 'sub', 'trusted_contact', 'updated', 'us-east-1', 'user_id']
