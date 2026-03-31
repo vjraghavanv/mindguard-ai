@@ -41,7 +41,7 @@ API Gateway (REST + WebSocket)
         ├── Amazon SNS/Pinpoint (notifications)
         └── EventBridge Scheduler (nudges, reports, score recomputes)
 ```
-
+![MindGuard AI Banner](generated-diagrams/mindguard-architecture.jpg)
 ---
 
 ## Project Structure
