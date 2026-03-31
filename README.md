@@ -72,6 +72,9 @@ mindguard-ai/
 
 ---
 
+![MindGuard AI Banner](generated-diagrams/mindguard-sequence.png)
+
+
 ## Getting Started
 
 ### Prerequisites
